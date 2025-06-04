@@ -1,0 +1,161 @@
+bufferSize:
+  description: "RLC tx buffer size (MB)"
+  default: 10
+rlcAmEnabled:
+  desrption: "If true, use RLC AM, else use RLC UM"
+  default: true
+enableTraces:
+  description: "If true, generate ns-3 traces"
+  default: true
+e2lteEnabled:
+  description: "If true, send LTE E2 reports"
+  default: true
+e2nrEnabled:
+  description: "If false, send NR E2 reports"
+  default: false
+e2du:
+  description: "If true, send DU reports"
+  default: true
+e2cuUp:
+  description: "If true, send CU-UP reports"
+  default: true
+e2cuCp:
+  description: "If true, send CU-CP reports"
+  default: true
+trafficModel:
+  description: "Type of the traffic model at the transport layer [0,3]"
+  values:
+  - value: 0
+    description: "can generate full buffer traffic (0)"
+  - value: 1
+    description: "half nodes in full buffer and half nodes in bursty (1)"
+  - value: 2
+    description: "bursty traffic (2)"
+  - value: 3
+    description: "Mixed (3): 0.25 full buffer, 0.25 bursty 3Mbps, 0.25 bursty 0.75Mbps, 0.25 bursty 0.15Mbps"
+  default: 0
+nBsNoUesAlloc:
+  description: "Number of BS without UEs allocated [0, 1, 2, 3],"
+  values:
+  - value: -1
+    description: "no BSs are choosen"
+  - value: 1
+  - value: 2
+  - value: 3
+  default: -1
+positionAllocator:
+  description: "Type of the positionAllocator of UEs [0,1]"
+  values:
+  - value: 0
+    description: "Uniform random distribution of UEs on discs around each BS  (0),"
+  - value: 1
+    description: "Uniform random distribution of UEs on discs around nBS-nBsNoUesAlloc (1)"
+  default: 0
+configuration:
+  description: Set the wanted configuration to emulate [0,2]
+  values:
+  - value: 0
+    description: "0: NR carrier at 850 MHz, low traffic"
+  - values: 1
+    description: "1: NR carrier at 3.5 GHz, low traffic"
+  - values: 2
+    description: "2: NR carrier at 28 GHz, high traffic"
+  default: 0
+dataRate:
+  description: "Set the data rate to be used [only \"0\"(low),\"1\"(high) admitted]"
+  values:
+  - value: 0
+    description: "low"
+  - values: 1
+    description: "high"
+  default: 0
+ues:
+  description: "Number of UEs for each mmWave ENB."
+  default: 7
+indicationPeriodicity:
+  description: "E2 Indication Periodicity reports (value in seconds)"
+  default: 0.1
+simTime:
+  description: "Simulation time in seconds"
+  default: 1.9
+reducedPmValues:
+  description: "If true, use a subset of the the pm containers"
+  default: true
+outageThreshold:
+  description: "SNR threshold for outage events [dB]"
+  default: -1000.0
+basicCellId:
+  description: "The next value will be the first cellId"
+  default: 1
+numberOfRaPreambles:
+  description: "how many random access preambles are available for the contention based RACH process"
+  default: 30
+handoverMode:
+  description: "HO heuristic to be used"
+  default: "NoAuto"
+  values:
+  - value: "NoAuto"
+  - value: "FixedTtt"
+  - value: "DynamicTtt"
+  - value: "Threshold"
+e2TermIp:
+  description: "The IP address of the RIC E2 termination"
+  default: "10.244.0.240"
+enableE2FileLogging:
+  description: "If true, generate offline file logging instead of connecting to RIC"
+  default: true
+controlFileName:
+  description: "The path to the control file (can be absolute)"
+  value: ""
+useSemaphores:
+  description: "If true, enables the use of semaphores for external environment control"
+  value: false
+minSpeed:
+  description: "minimum UE speed in m/s"
+  value: 2.0
+maxSpeed:
+  description: "maximum UE speed in m/s"
+  value: 4.0
+heuristicType:
+  description: "Type of heuristic for managing BS status,"
+  values:
+  - value: -1
+    description: "No Heuristic"
+  - value: 0
+    description: "Random Sleeping"
+  - value: 1
+    description: "Static Sleeping"
+  - value: 2
+    description: "Dynamic Sleeping"
+  default: -1
+probOn:
+  description: "Probability to turn BS ON for the random sleeping heuristic"
+  reference: "https://ieeexplore.ieee.org/abstract/document/7060678"
+  default: 0.6038
+probIdle:
+  description: "Probability to turn BS Idle for the random sleeping heuristic"
+  reference: "https://ieeexplore.ieee.org/abstract/document/7060678"
+  default: 0.3854
+probSleep:
+  description: "Probability to turn BS Sleep for the random sleeping heuristic"
+  reference: "https://ieeexplore.ieee.org/abstract/document/7060678"
+  default: 0.0107
+probOff:
+  description: "Probability to turn BS Off for the random sleeping heuristic"
+  reference: "https://ieeexplore.ieee.org/abstract/document/7060678"
+  default: 0.0
+sinrTh:
+  description: "SINR threshold for static and dynamic sleeping heuristic"
+  default: 73.0
+bsOn:
+  description: "number of BS to turn ON for static and dynamic sleeping heuristic"
+  default: 2
+bsIdle:
+  description: "number of BS to turn IDLE for static and dynamic sleeping heuristic"
+  default: 2
+bsSleep:
+  description: "number of BS to turn Sleep for static and dynamic sleeping heuristic"
+  default: 2
+bsOff:
+  description: "number of BS to turn Off for static and dynamic sleeping heuristic"
+  default: 2

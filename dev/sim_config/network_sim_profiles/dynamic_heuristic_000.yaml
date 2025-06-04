@@ -1,0 +1,31 @@
+base:
+  heuristicType: 2
+  simTime: 10
+  ues: 3
+  reducedPmValues: 0
+  indicationPeriodicity: 0.100
+  controlFileName: es_actions_for_ns3.csv
+  useSemaphores: 1
+  e2lteEnabled: 1
+  e2nrEnabled: 1
+  e2du: 1
+static:
+  minSpeed: 2
+  maxSpeed: 4
+  probOn: 6038
+  probIdle: 0.3854
+  probSleep: 0.0107
+  probOff: 0.0
+  numberOfRaPreambles: 30
+  bsOn: 5
+  bsIdle: 0
+  bsSleep: 0
+  bsOff: 2
+  outageThreshold: -5.0
+  handoverMode: DynamicTtt
+enumerative:
+  RngRun: [0,100]
+  trafficModel: [0,3]
+  configuration: [0,2]
+  dataRate: [0,1]
+  
