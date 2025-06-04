@@ -23,10 +23,11 @@ import shutil
 
 
 
-def initialize_norm_stats(stats_pickle = "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/explore/data-engineering/data_stats/normalization_stats.pkl"):
+BASE_DIR = "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym"
+
+def initialize_norm_stats(stats_pickle = f"{BASE_DIR}/dev/explore/data-engineering/data_stats/normalization_stats.pkl"):
     with open(stats_pickle,"rb") as f:
         data_stats = pickle.load(f)
-    
     return data_stats
 
 data_stats = initialize_norm_stats()
@@ -38,18 +39,18 @@ reward_mean = data_stats["reward_mean"]
 reward_std = data_stats["reward_std"]
 
 config_paths = [
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_201/eval_201_500_0_0_0.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_201/eval_201_500_1_0_0.json",    
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_201/eval_201_500_2_0_0.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_201/eval_201_500_3_0_0.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_201/eval_201_500_0_0_1.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_201/eval_201_500_1_0_1.json",    
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_201/eval_201_500_2_0_1.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_201/eval_201_500_3_0_1.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_201/eval_201_500_0_0_0.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_201/eval_201_500_1_0_0.json",    
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_201/eval_201_500_2_0_0.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_201/eval_201_500_3_0_0.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_201/eval_201_500_0_0_1.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_201/eval_201_500_1_0_1.json",    
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_201/eval_201_500_2_0_1.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_201/eval_201_500_3_0_1.json",
 ]
 
 ns3_path = "/home/gagluba/ns-3-mmwave-oran/"
-output_folder = "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/output"
+output_folder = f"{BASE_DIR}/output"
 optimized = True
 
 num_envs = 8
@@ -65,7 +66,7 @@ def load_memmap_directories(basepath):
 
 
 def initialize_replay_buffer():
-    raw_dir = Path("/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/explore/data-engineering/raw")
+    raw_dir = Path(f"{BASE_DIR}/dev/explore/data-engineering/raw")
     memmap_dirs = load_memmap_directories(raw_dir/"0") + \
         load_memmap_directories(raw_dir/"2") 
 
@@ -73,7 +74,7 @@ def initialize_replay_buffer():
     loaded_data = [TensorDict.load_memmap(d) for d in memmap_dirs]
     #print(loaded_data)
 
-    replay_buffer_dir = Path("/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/explore/data-engineering/replay_buffer")
+    replay_buffer_dir = Path(f"{BASE_DIR}/dev/explore/data-engineering/replay_buffer")
     if os.path.exists(replay_buffer_dir):
         shutil.rmtree(replay_buffer_dir)
 

@@ -9,28 +9,28 @@ import gymnasium as gym
 import numpy as np
 
 
-def initialize_norm_stats(stats_pickle = "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/explore/data-engineering/data_stats/normalization_stats.pkl"):
+BASE_DIR = "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym"
+
+def initialize_norm_stats(stats_pickle = f"{BASE_DIR}/dev/explore/data-engineering/data_stats/normalization_stats.pkl"):
     with open(stats_pickle,"rb") as f:
         data_stats = pickle.load(f)
         return data_stats['obs_mean'], data_stats['obs_std']
 
 obs_mean, obs_std = initialize_norm_stats()
-# data_stats
-obs_mean,obs_mean
 
 config_paths = [
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_104/eval_104_500_0_0_0.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_104/eval_104_500_1_0_0.json",    
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_104/eval_104_500_2_0_0.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_104/eval_104_500_3_0_0.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_104/eval_104_500_0_0_1.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_104/eval_104_500_1_0_1.json",    
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_104/eval_104_500_2_0_1.json",
-    "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/dev/sim_config/scenario_configurations_eval_104/eval_104_500_3_0_1.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_104/eval_104_500_0_0_0.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_104/eval_104_500_1_0_0.json",    
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_104/eval_104_500_2_0_0.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_104/eval_104_500_3_0_0.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_104/eval_104_500_0_0_1.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_104/eval_104_500_1_0_1.json",    
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_104/eval_104_500_2_0_1.json",
+    f"{BASE_DIR}/dev/sim_config/scenario_configurations_eval_104/eval_104_500_3_0_1.json",
 ]
 
 ns3_path = "/home/gagluba/ns-3-mmwave-oran/"
-output_folder = "/mnt/d/Workspace/Networks/RL-Project/ns-o-ran-gym/output"
+output_folder = f"{BASE_DIR}/output"
 optimized = True
 
 num_envs = 8
